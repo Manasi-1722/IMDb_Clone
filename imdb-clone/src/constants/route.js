@@ -1,7 +1,7 @@
-const APP_PATH = 'imdb';
+const APP_PATH = 'http://localhost:3000';
 
 export const routePath  = {
-    home            : `/${APP_PATH}/`,
+    home            : `/`,
     categories      : `/${APP_PATH}/categories`,
     movie           : `${APP_PATH}/movie`,
     movies          : `${APP_PATH}/movies`,
