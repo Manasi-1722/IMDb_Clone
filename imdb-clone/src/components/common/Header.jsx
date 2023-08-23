@@ -5,8 +5,9 @@ import { useState } from 'react';
 import { AppBar, Box, Typography, Toolbar, InputBase, styled } from '@mui/material';
 import { Menu, BookmarkAdd, ExpandMore } from '@mui/icons-material';
 
+import { useNavigate } from 'react-router-dom';
 import { logoURL } from '../../constants/constant';
-
+import { routePath } from '../../constants/route';
 
 // components
 import HeaderMenu from './HeaderMenu';
@@ -19,6 +20,7 @@ const StyledToolBar = styled(Toolbar)`
     justify-content: space-between;
     & > * {
         padding: 0 16px;
+        cursor: pointer;
     }
     & > div {
         display: flex;
@@ -44,12 +46,15 @@ const InputSearchField = styled(InputBase)`
 `
 
 const Logo = styled('img') ({
-    width: 64
+    width: 64, 
+    cursor: 'pointer'
 })
 
 const Header = () => {
 
     const [open, setOpen] = useState(null);
+
+    const navigate = useNavigate();
 
     const handleClick = (e) => {
         setOpen(e.currentTarget);
@@ -59,16 +64,18 @@ const Header = () => {
         setOpen(null);
     }
     return (
-        <AppBar>
+        <AppBar position='static' >
             <StyledToolBar>
-                <Logo src={logoURL} alt='logo' />
+                <Logo src={logoURL} alt='logo' onClick={() => navigate(routePath.home)}/>
                 <Box onClick={handleClick}>
                     <Menu />
                     <Typography>Menu</Typography>
                 </Box>
                 <HeaderMenu open={open} handleClose={handleClose} />
-                <InputSearchField />
-
+                <InputSearchField 
+                    placeholder='Search IMDb'
+                />
+ 
                 <Typography>IMDb<Box component="span">Pro</Box></Typography>
 
                 <Box>
